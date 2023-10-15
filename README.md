@@ -2,4 +2,4 @@
 
 #### Diagrama de Classes
 
-![Diagramas de Classe UML baralho (1)](https://github.com/AdriandersonLira/prototype-baralho/assets/43156311/a40029b7-2a19-45a7-9d1e-79ad58fcb7e3)
+![Diagramas de Classe UML baralho (1)](https://github.com/AdriandersonLira/prototype-baralho/assets/43156311/860fe8bc-a4ae-4fc3-8cfb-e308b8835e24)
