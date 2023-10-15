@@ -4,22 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class DeckOfCardsSuecaFactory implements DeckOfCardsFactory {
+public class DeckOfCardsSuecaFactory implements DeckOfCardsFactory, Prototype {
     private List<Card> deckSueca;
     private final int NUMBER_OF_CARDS = 40;
     private String trunfo;
     private Random randomNumbers;
 
+    public DeckOfCardsSuecaFactory(List<Card> deckSueca) {
+        this.deckSueca = deckSueca;
+    }
+
+    public List getDeckSueca() {
+        return deckSueca;
+    }
+
+    public void setDeckSueca(List value) {
+        this.deckSueca = value;
+    }
+
 
     // Ace = 11, Seven = 10, King = 4, Queen = 3, Jack = 2
-
     @Override
     public List<Card> createDeckOfCards() {
         String faces[] = { "Ace", "Deuce", "Three", "Four", "Five", "Six",
                 "Seven", "Jack", "Queen", "King" };
         String suits[] = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
-        deckSueca = new ArrayList<Card>(); // cria List de objetos Card
+        List<Card> deckOfCardsSueca = new ArrayList<Card>(); // cria List de objetos Card
 
         randomNumbers = new Random();
 
@@ -48,10 +59,19 @@ public class DeckOfCardsSuecaFactory implements DeckOfCardsFactory {
                     value =  0;
             }
 
-            deckSueca.add(new Card( faces[ count % 10 ], suits[ count / 10 ], value ));
+            deckOfCardsSueca.add(new Card( faces[ count % 10 ], suits[ count / 10 ], value ));
         }
 
-        return deckSueca;
+        return deckOfCardsSueca;
+    }
+
+    @Override
+    public Prototype clone() {
+        List<Card> cartasClone = new ArrayList<>();
+        for (Card carta : this.deckSueca) {
+            cartasClone.add(carta.clone());
+        }
+        return new DeckOfCardsSuecaFactory(cartasClone);
     }
 
     public boolean hasCard() {
@@ -72,6 +92,10 @@ public class DeckOfCardsSuecaFactory implements DeckOfCardsFactory {
 
     public int size() {
         return deckSueca.size();
+    }
+
+    public String getTrunfo(){
+        return this.trunfo;
     }
 
     public String toString() {
